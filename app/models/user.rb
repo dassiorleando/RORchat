@@ -6,6 +6,8 @@ class User < ApplicationRecord
 
   acts_as_messageable
 
+  has_many :bookmarks
+
   def mailboxer_name
     self.name
   end

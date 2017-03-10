@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170309174562) do
+ActiveRecord::Schema.define(version: 20170310111536) do
 
   create_table "bookmarks", force: :cascade do |t|
     t.string   "title"
     t.string   "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "user_id"
   end
 
   create_table "mailboxer_conversation_opt_outs", force: :cascade do |t|
