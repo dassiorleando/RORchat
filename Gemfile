@@ -34,6 +34,12 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'devise'
 
+gem 'pundit'
+
+gem 'mailboxer'
+
+gem 'chosen-rails'
+
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 
