@@ -1,16 +1,24 @@
-<div class="media">
-  <div class="media-left">
-    <a href="#">
-      <img class="media-object" src="http://placehold.it/64x64" alt="...">
-    </a>
-  </div>
-  <div class="media-body">
-    <h4 class="media-heading">
-      <%= conversation.originator.name %> <br>
-      <small><b>Subject: </b><%= conversation.subject %></small><br>
-      <small><b>Date: </b><%=  conversation.messages.last.created_at.strftime("%A, %b %d, %Y at %I:%M%p") %></small>
-    </h4>
-    <%= truncate conversation.messages.last.body, length: 145 %>
-    <%= link_to "View", conversation_path(conversation)  %>
-  </div>
+<div class="list-group">
+    <div class="list-group-item">
+      <div class="row-picture">
+        <img class="circle" src="http://placehold.it/64x64" alt="icon">
+      </div>
+      <div class="row-content">
+        <h4 class="list-group-item-heading">
+          <%= link_to conversation_path(conversation) do %>
+              <%= conversation.originator.name %>
+              <% end %>
+        </h4>
+
+        <p class="list-group-item-text"><b>Subject: </b><%= conversation.subject %></p>
+        <p class="list-group-item-text">
+          <small><b>Date: </b><%=  conversation.messages.last.created_at.strftime("%A, %b %d, %Y at %I:%M%p") %></small>
+        </p>
+        <%= truncate conversation.messages.last.body, length: 145 %>
+        <%= link_to conversation_path(conversation) do %>
+            <i class="fa fa-eye"></i>
+        <% end %>
+      </div>
+    </div>
+    <div class="list-group-separator"></div>
 </div>

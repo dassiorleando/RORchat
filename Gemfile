@@ -41,6 +41,9 @@ gem 'mailboxer'
 gem 'chosen-rails'
 
 gem 'bootstrap-sass', '~> 3.2.0'
+
+gem 'bootstrap-material-design-rails'
+
 gem 'autoprefixer-rails'
 
 # Use Capistrano for deployment

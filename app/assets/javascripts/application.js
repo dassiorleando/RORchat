@@ -15,4 +15,5 @@
 //= require chosen-jquery
 //= require turbolinks
 //= require bootstrap-sprockets
+//= require bootstrap-material-design-rails
 //= require_tree .

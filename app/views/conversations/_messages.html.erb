@@ -1,18 +1,24 @@
-<% @receipts.each do |receipt| %>
-    <% message = receipt.message %>
-    <div class="media">
-      <div class="media-left">
-        <a href="#">
-          <img class="media-object" src="http://placehold.it/64x64" alt="...">
-        </a>
+<div class="list-group">
+  <% @receipts.each do |receipt| %>
+      <% message = receipt.message %>
+
+      <div class="list-group-item">
+        <div class="row-picture">
+          <img class="circle" src="http://placehold.it/64x64" alt="icon">
+        </div>
+        <div class="row-content">
+          <h4 class="list-group-item-heading"><%= message.sender.name %></h4>
+
+          <p class="list-group-item-text"><%= message.body %></p>
+          <!--<p class="list-group-item-text">-->
+            <!--<small><b>Subject: </b><%= message.subject %></small><br>-->
+          <!--</p>-->
+          <p class="list-group-item-text">
+            <small><b>Date: </b><%=  message.created_at.strftime("%A, %b %d, %Y at %I:%M%p") %></small>
+          </p>
+        </div>
       </div>
-      <div class="media-body">
-        <h4 class="media-heading">
-          <%= message.sender.name %> <br>
-          <!--<small><b>Subject: </b><%= message.subject %></small><br>-->
-          <small><b>Date: </b><%=  message.created_at.strftime("%A, %b %d, %Y at %I:%M%p") %></small>
-        </h4>
-        <%= message.body %>
-      </div>
-    </div>
-<% end %>
+      <div class="list-group-separator"></div>
+  <% end %>
+</div>
+

@@ -5,65 +5,98 @@
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => 'true' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => 'true' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => 'reload' %>
+    <!--<%= javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/4.0.2/bootstrap-material-design.iife.min.js" %>-->
+
     <%= stylesheet_link_tag "//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" %>
+    <!--<%= stylesheet_link_tag "//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/4.0.2/bootstrap-material-design.min.css" %>-->
+
+    <script>
+        $.material.init();
+    </script>
+    <style>
+      .navbar-default .navbar-brand{
+        color: white;
+      }
+      a:hover {
+        background-color: inherit;
+      }
+      .footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        background-color: #f5f5f5;
+        padding: 10px 0 10px 0;
+        text-align: center;
+      }
+    </style>
   </head>
 
   <body>
-    <% flash.each do |key, value| %>
-        <div class="text-center <%= flash_class(key) %>">
-          <%= value %>
-        </div>
-    <% end %>
+    <div class="main-content">
+      <% flash.each do |key, value| %>
+          <div class="text-center <%= flash_class(key) %>">
+            <%= value %>
+          </div>
+      <% end %>
 
-    <!--Tope menu-->
-    <div class="navbar navbar-default">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-ex-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="/"><span>RoR chat</span></a>
-        </div>
-        <div class="collapse navbar-collapse" id="navbar-ex-collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li class="active">
-              <a href="/">Home</a>
-            </li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <i class="glyphicon glyphicon-user"> </i> Account <span class="caret"></span>
-              </a>
-              <ul class="dropdown-menu" role="menu">
-                <% if user_signed_in? %>
-                    <!--<li><a href="#">Chat</a></li>-->
-                    <li><%= link_to "Inbox", mailbox_inbox_path %></li>
-                    <li><%= link_to 'Bookmarks', bookmarks_path %></li>
-                    <li class="divider"></li>
-                    <li><%= link_to 'Logout', destroy_user_session_path %></li>
-                    <li><%= link_to 'Profile', edit_user_registration_path %></li>
-                <% else %>
-                  <li><%= link_to 'Login', new_user_session_path %></li>
-                  <li><%= link_to 'Register', new_user_registration_path %></li>
-                <% end %>
-              </ul>
-            </li>
-          </ul>
+      <!--Tope menu-->
+      <div class="navbar navbar-default" style="color: white !important;">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-ex-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/"><span>RoR chat</span></a>
+          </div>
+          <div class="collapse navbar-collapse" id="navbar-ex-collapse">
+            <ul class="nav navbar-nav navbar-right">
+              <li class="active">
+                <a href="/">Home</a>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <i class="glyphicon glyphicon-user"> </i> Account <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                  <% if user_signed_in? %>
+                      <li><%= link_to "Chat", mailbox_inbox_path %></li>
+                      <li><%= link_to 'Bookmarks', bookmarks_path %></li>
+                      <li>
+                        <%= link_to mailbox_trash_path do %>
+                            Trash
+                        <% end %>
+                      </li>
+                      <li class="divider"></li>
+                      <li><%= link_to 'Logout', destroy_user_session_path %></li>
+                      <li><%= link_to 'Profile', edit_user_registration_path %></li>
+                  <% else %>
+                    <li><%= link_to 'Login', new_user_session_path %></li>
+                    <li><%= link_to 'Register', new_user_registration_path %></li>
+                  <% end %>
+                </ul>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!--Main content-->
-    <div id="main-container" class="container">
-        <!--<p class="notice"><%= notice %></p>-->
-        <!--<p class="alert"><%= alert %></p>-->
+      <div id="main-container" class="container">
+          <div class="row">
+              <%= yield %>
+          </div>
+      </div>
 
-        <div class="row">
-            <%= yield %>
+      <footer class="footer">
+        <div class="container">
+          <p class="text-muted">
+            <a href="https://github.com/dassiorleando">By Dassi Orleando</a>
+          </p>
         </div>
+      </footer>
     </div>
   </body>
 </html>
