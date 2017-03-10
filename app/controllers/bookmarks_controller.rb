@@ -1,5 +1,5 @@
 class BookmarksController < ApplicationController
-  before_action :set_bookmark, only: [:show, :edit, :update, :destroy]
+  before_action :set_bookmark, only: [:show, :edit, :update]
 
   before_action :authenticate_user!
 
@@ -53,17 +53,6 @@ class BookmarksController < ApplicationController
         format.html { render :edit }
         format.json { render json: @bookmark.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  # DELETE /bookmarks/1
-  # DELETE /bookmarks/1.json
-  def destroy
-    @bookmark.destroy
-    respond_to do |format|
-      flash[:success] = 'Bookmark was successfully destroyed.'
-      format.html { redirect_to bookmarks_url }
-      format.json { head :no_content }
     end
   end
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170310111536) do
+ActiveRecord::Schema.define(version: 20170310120642) do
 
   create_table "bookmarks", force: :cascade do |t|
     t.string   "title"
@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(version: 20170310111536) do
     t.string   "encrypted_password",  default: "", null: false
     t.datetime "remember_created_at"
     t.string   "name"
+    t.integer  "role"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

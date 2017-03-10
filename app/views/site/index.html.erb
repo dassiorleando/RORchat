@@ -3,23 +3,44 @@
 </div>
 
 <div class="col-sm-8 col-sm-offset-2">
-  <div class="well infobox">
-    <p class="text-center">
-      <b>RoR-chat</b> is a simple multi-conversations message app build freely for anyone usins Ruby on Rails, Bootstrap, Bootstrap Material Design.<br>
-    </p>
-
-    <p>If you would like to use it, just register yourself and start to create conversations with others registered users. It is free yes.
-      Please also don't forget to rate this project built when I started leaning Rails.
-      <a href="https://github.com/dassiorleando/RORchat">Github RORchat</a>.</p>
-
-    <div class="btn-group btn-group-justified btn-group-raised">
-      <%= link_to new_user_session_path, class: 'btn btn-raised btn-info' do %>
-          Sign In
+  <% if user_signed_in? %>
+      <% case current_user.role %>
+        <% when 'user' %>
+          <div class="well well-lg">
+            <div class="row text-center">
+              Welcome, you are a <b>USER</b>, this is your dashboard and you can do a lot here
+            </div>
+            <br>
+            Quisque velit nisi, pretium ut lacinia in, elementum id enim. Proin eget tortor risus. Proin eget tortor risus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Sed porttitor lectus nibh. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Nulla porttitor accumsan tincidunt. Donec rutrum congue leo eget malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi.
+          </div>
+        <% when 'trainer' %>
+          <div class="well well-lg">
+            <div class="row text-center">
+              Welcome, you are a <b><u>TRAINER</u></b>, this is your dashboard and you can do a lot here
+            </div>
+            <br>
+            Quisque velit nisi, pretium ut lacinia in, elementum id enim. Proin eget tortor risus. Proin eget tortor risus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Sed porttitor lectus nibh. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Nulla porttitor accumsan tincidunt. Donec rutrum congue leo eget malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi.
+          </div>
       <% end %>
-      <%= link_to new_user_session_path, class: 'btn btn-raised btn-primary' do %>
-          Sign Up & Start to chat
-      <% end %>
-    </div>
+  <% else %>
+    <div class="well infobox">
+      <p class="text-center">
+        <b>RoR-chat</b> is a simple multi-conversations message app build freely for anyone usins Ruby on Rails, Bootstrap, Bootstrap Material Design.<br>
+      </p>
+
+      <p>If you would like to use it, just register yourself and start to create conversations with others registered users. It is free yes.
+        Please also don't forget to rate this project built when I started leaning Rails.
+        <a href="https://github.com/dassiorleando/RORchat">Github RORchat</a>.</p>
+
+      <div class="btn-group btn-group-justified btn-group-raised">
+        <%= link_to new_user_session_path, class: 'btn btn-raised btn-info' do %>
+            Sign In
+        <% end %>
+        <%= link_to new_user_registration_path, class: 'btn btn-raised btn-primary' do %>
+            Sign Up & Start to chat
+        <% end %>
+      </div>
+  <% end %>
 
   </div>
 </div>

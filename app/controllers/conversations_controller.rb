@@ -12,7 +12,7 @@ class ConversationsController < ApplicationController
   end
 
   def show
-    @receipts = conversation.receipts_for(current_user)
+    @receipts = conversation.receipts_for(current_user).inbox
     # mark conversation as read
     conversation.mark_as_read(current_user)
   end
@@ -21,16 +21,6 @@ class ConversationsController < ApplicationController
     current_user.reply_to_conversation(conversation, message_params[:body])
     flash[:notice] = "Your reply message was successfully sent!"
     redirect_to conversation_path(conversation)
-  end
-
-  def trash
-    conversation.move_to_trash(current_user)
-    redirect_to mailbox_inbox_path
-  end
-
-  def untrash
-    conversation.untrash(current_user)
-    redirect_to mailbox_inbox_path
   end
 
   private
